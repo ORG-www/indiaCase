@@ -9,7 +9,8 @@
 <body>
   <script>
     // Redirect all 404 requests to index.html to be handled by React Router
-    window.location.replace("/indiaCase");
+    const redirectTo = window.location.pathname + window.location.search + window.location.hash;
+    window.location.replace("/indiaCase" + redirectTo);
   </script>
 </body>
 </html>
