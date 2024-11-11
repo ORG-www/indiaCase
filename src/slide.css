@@ -227,33 +227,34 @@ style.css
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: 600;
     margin-right: 10px;
     font-family: "Raleway", sans-serif;
 
   }
   
-  .option-button .option-label .selected {
-    position: relative;
-    width: 24px;
-    min-width: 22px;
-    height: 24px;
-    border-radius: var(--sampler-comp-radius-keyhint);
-    font-size: 12px;
-    line-height: 16px;
-    font-family: "Raleway", sans-serif;
-    border-color: rgb(255, 255, 255);
-    background-color: rgb(255, 255, 255);
-    color: rgb(252, 250, 249);
+
+  .option-button{
+    border-radius: 10px;
   }
-  
-  .option-text:active{
-    color: rgb(16, 15, 14);
+
+  .option-button.selected .option-text {
+    color: rgb(16, 15, 14); 
+  }
+
+  .option-button.selected {
+    background-color: #e0e0e0; 
+  }
+
+  .option-button.selected .option-label {
+    background-color: white; 
+    color: rgb(50, 49, 49); 
+
   }
   
   .option-button .option-text {
     flex-grow: 1;
-    font-family: "Nunito";
+    font-family: "Raleway", sans-serif;
     font-size: large;
 
     @media only screen and (max-width: 350px) {
@@ -262,10 +263,6 @@ style.css
     
   }
   
-  
-  .option-button:hover {
-    background-color: #e0e0e0;
-  }
   
   .error-message {
     color: rgb(152, 46, 46);

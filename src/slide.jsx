@@ -460,7 +460,16 @@ const Survey=()=> {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(() => {
+    // Retrieve the last saved question index from localStorage or start at 0
+    const savedIndex = localStorage.getItem("currentQuestionIndex");
+    return savedIndex ? parseInt(savedIndex, 10) : 0;
+  });
+
+
+
   const [city, setCity] = useState("")
   const [selectedOption, setSelectedOption] = useState(null)
   const [responses, setResponses] = useState({ city: "", answers: [] })
@@ -485,6 +494,13 @@ const Survey=()=> {
       navigate("/conclusion"); // Redirect to the conclusion page if already submitted
     }
   }, [navigate]);
+
+
+  useEffect(() => {
+    // Save the current question index to localStorage whenever it changes
+    localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+  }, [currentQuestionIndex]);
+
 
   useEffect(() => {
     if (initialRender.current) {
@@ -747,6 +763,8 @@ const Survey=()=> {
      
        // Set a flag in localStorage to prevent re-filling the survey
        localStorage.setItem("surveySubmitted", "true");
+
+       localStorage.removeItem("currentQuestionIndex");
       
        // Redirect to the conclusion page and replace history entry
        navigate("/conclusion", { replace: true });
@@ -771,7 +789,7 @@ const Survey=()=> {
       <div className="wrapper">
         <div className={`survey-container ${slideDirection}`}>
           <p className="question">
-            {currentQuestionIndex + 1}.{currentQuestion.question}
+            {currentQuestionIndex + 1}. {currentQuestion.question}
           </p>
           {citySlide(currentQuestion.id)}
           {genderSlide(currentQuestion.id)}

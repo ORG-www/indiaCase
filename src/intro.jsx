@@ -32,9 +32,9 @@ const Introduction=()=>{
         <div className="container">
         <div className="image" role="img" aria-label="Background image"></div>
   
-         <MusicPlayer/>
+         {/* <MusicPlayer/> */}
   
-        <div className="wrapper">
+        <div className="wrapper" style={{marginTop: "150px"}}>
             <div className="survey-container slide-in-from-bottom-intro">
             <p className="question">Instructions- 
             You will be presented with a series of questions/statements, each followed by a set of answer options.
