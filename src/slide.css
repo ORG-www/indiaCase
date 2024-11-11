@@ -16,11 +16,15 @@ style.css
   background-image: url(https://images.typeform.com/images/ziZh4BCtse85/background/large);
   background-position: center top;
   background-size: cover;
-  height: 100%;
+  height: 110%;
   width: 100%;
   position: absolute;
   inset-block-start: 0px;
   inset-inline-start: 0px;
+
+  @media only screen and (max-width: 450px) {
+    height: 150%;
+  }
 }
 
 .survey-container {
@@ -30,15 +34,16 @@ style.css
     max-width: 720px;
     margin: 0px auto;
     padding-inline: 0px;
-
-    /* pointer-events: none; */
-   
-    /* transform: translateY(-100vh);
-    transition: transform 600ms ease, opacity 300ms ease; */
+    transition: transform 600ms ease, opacity 300ms ease; 
     position: relative; 
     overflow: hidden;
   }
   
+  .slide-initial {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
   .slide-in {
     opacity: 1;
     transform: translateY(0);
@@ -48,6 +53,55 @@ style.css
     opacity: 0;
     transform: translateY(-100vh);
   }
+
+  .slide-in-from-bottom {
+    animation: slideInFromBottom 0.3s ease-out forwards;
+  }
+  
+  .slide-out-up {
+    animation: slideOutUp 0.3s ease-out forwards;
+  }
+
+
+  @keyframes slideInFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOutUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+
+  .slide-in-from-bottom-intro {
+    animation: slideInFromBottom 1.0s ease-out forwards;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
   
   .wrap1{
     width: auto;
@@ -70,11 +124,7 @@ style.css
     } 
 
   .options-container {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0; */
-
+  
     margin: 0px;
     padding: 0px;
     max-width: 100%;
@@ -86,6 +136,9 @@ style.css
     user-select: none;
     margin-block-end: -8px;
     margin-inline-end: 8px;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 1em;
 
   }
   
@@ -126,9 +179,23 @@ style.css
 
   .inputbox {
     display: flex;
-    border-radius: 2px solid black ;
-    padding: 10px;
+    background: transparent;
+    padding: 5px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: #f0f0f0;
+    font-weight: 500;
+    font-family: 'Nunito';
+    font-size: 24px;
+    width: 80%;
+    margin-inline-start: 10px;
+
+    @media only screen and (max-width: 400px) {
+      font-size: 20px;
+    }
   }
+
 
   .question{
    
@@ -142,6 +209,12 @@ style.css
     -webkit-font-smoothing: antialiased;
     display: flex;
     overflow-wrap: break-word;
+    font-family: 'Raleway', sans-serif;
+    
+
+    @media only screen and (max-width: 400px) {
+      font-size: 20px;
+    }
 
   }
   
@@ -156,21 +229,11 @@ style.css
     justify-content: center;
     font-weight: bold;
     margin-right: 10px;
+    font-family: "Raleway", sans-serif;
 
-    /* position: relative;
-    width: 24px;
-    min-width: 22px;
-    height: 24px;
-    border-radius: var(--sampler-comp-radius-keyhint);
-    font-size: 12px;
-    line-height: 16px;
-    font-family: sans-serif; 
-    border-color: rgb(255, 255, 255);
-    background-color: rgb(255, 255, 255);
-    color: rgb(252, 250, 249); */
   }
   
-  .option-button .option-label.selected {
+  .option-button .option-label .selected {
     position: relative;
     width: 24px;
     min-width: 22px;
@@ -178,37 +241,43 @@ style.css
     border-radius: var(--sampler-comp-radius-keyhint);
     font-size: 12px;
     line-height: 16px;
-    font-family: sans-serif;
+    font-family: "Raleway", sans-serif;
     border-color: rgb(255, 255, 255);
     background-color: rgb(255, 255, 255);
     color: rgb(252, 250, 249);
   }
-
-  .option-button .option-text {
-    flex-grow: 1;
+  
+  .option-text:active{
+    color: rgb(16, 15, 14);
   }
   
-  /* .option-button.selected {
-   
-    color: white;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-  } */
+  .option-button .option-text {
+    flex-grow: 1;
+    font-family: "Nunito";
+    font-size: large;
+
+    @media only screen and (max-width: 350px) {
+      font-size: 17px;
+    }
+    
+  }
+  
   
   .option-button:hover {
     background-color: #e0e0e0;
   }
   
   .error-message {
-    color: red;
+    color: rgb(152, 46, 46);
     margin: 10px 0;
+    font-family: 'Nunito';
   }
   
   .submit-button {
     
     margin-top: 20px;
     position: relative;
-    font-family: inherit;
+    font-family: 'Nunito';
     line-height: initial;
     font-weight: 700;
     cursor: pointer;
@@ -223,7 +292,119 @@ style.css
     min-height: 40px;
     background-color: rgb(251, 251, 251);
     color: rgb(124, 124, 124);
-    border-radius: var(--sampler-comp-radius-button);
+    border-radius: 10px;
+    font-size: 110%;
   }
   
+  .music-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-clr, #333);
+    width: auto;
+    min-width: 200px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    background: transparent;
+  }
   
+  .music-player h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .music-player p {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.6;
+    margin: 0;
+  }
+  
+  /* Music Player Progress */
+  .progress-bar {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: rgb(99 27 171 / 40%);
+    border-radius: 4px;
+    margin: 32px 0 24px;
+    cursor: pointer;
+  }
+  
+  .progress-bar::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    background: rgba(163, 162, 164, 0.9);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    outline: 4px solid var(--primary-clr, #333);
+    box-shadow: 0 6px 10px rgba(5, 36, 28, 0.3);
+  }
+  
+  /* Music Player Controls */
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    background: rgba(163, 162, 164, 0.3);
+    color: var(--primary-clr, #333);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.2rem;
+    box-shadow: 0 10px 20px rgba(5, 36, 28, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .controls button:hover {
+    transform: scale(0.96);
+  }
+  
+  .play-pause-btn {
+   background-color: blue;
+    transform: scale(1.2);
+  }
+  
+  .play-pause-btn:hover {
+    transform: scale(1.15);
+  }
+  
+
+  .language-selector {
+    margin-bottom: 15px;
+    color:  rgb(255, 255, 255);
+    font-family: 'Nunito';
+    font-size: 22px;
+    line-height: 32px;
+     
+    @media only screen and (max-width: 400px) {
+      font-size: 20px;
+    }
+  }
+  
+  #language-select {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .translate-dropdown{
+    background-color: rgb(251, 251, 251);
+    color: rgb(124, 124, 124);
+    font-family: 'Nunito';
+    border-radius: 10px;
+    margin:1.2%;
+  }
