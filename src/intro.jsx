@@ -1,6 +1,5 @@
 import {React, useState} from "react";
 import "../src/slide.css";
-import { MusicPlayer } from "./slide";
 import { useNavigate } from "react-router-dom";
 import { surveyData, surveyDataHindi, optionsData, optionsDataHindi } from "./data";
 
@@ -39,7 +38,8 @@ const Introduction=()=>{
             <p className="question">Instructions- 
             You will be presented with a series of questions/statements, each followed by a set of answer options.
             Please read each question/statement carefully and select the option that feels most fitting for you. 
-            There are no right or wrong answers. Please respond as honestly as you can.(You may play the Piano progression)</p>
+            There are no right or wrong answers. Please respond as honestly as you can. Your responses will be kept strictly confidential.
+            (You may play the Piano progression)</p>
             <div className="language-selector">
             <label htmlFor="language-select">Select Language:</label>
             <select

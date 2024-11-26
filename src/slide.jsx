@@ -469,10 +469,17 @@ const Survey=()=> {
   });
 
 
-
   const [city, setCity] = useState("")
   const [selectedOption, setSelectedOption] = useState(null)
-  const [responses, setResponses] = useState({ city: "", answers: [] })
+ 
+
+  // Initialize responses from localStorage or default to an empty object
+  const [responses, setResponses] = useState(() => {
+    const savedResponses = localStorage.getItem("responses");
+    return savedResponses ? JSON.parse(savedResponses) : { city: "", answers: [] };
+  });
+
+
   const [error, setError] = useState("")
   const [slideDirection, setSlideDirection] = useState("slide-initial")
 
@@ -499,7 +506,8 @@ const Survey=()=> {
   useEffect(() => {
     // Save the current question index to localStorage whenever it changes
     localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
-  }, [currentQuestionIndex]);
+    localStorage.setItem("responses", JSON.stringify(responses));
+  }, [currentQuestionIndex, responses]);
 
 
   useEffect(() => {
@@ -706,42 +714,50 @@ const Survey=()=> {
 
 
   const handleNext = () => {
-    if (city) {
-      setResponses((prev) => ({ ...prev, city: city }))
-      setSlideDirection("slide-out-up")
-    
+    if (city.trim()) {
+      const updatedResponses = { ...responses, city };
+      setResponses(updatedResponses);
+      localStorage.setItem("responses", JSON.stringify(updatedResponses));
+      setSlideDirection("slide-out-up");
+
       setTimeout(() => {
-        setCurrentQuestionIndex(currentQuestionIndex + 1)
-        setCity("")
-        setError("")
-      }, 300)
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setCity("");
+        setError("");
+      }, 300);
     } else {
-      setError("Please input your city.")
+      setError("Please input your city.");
     }
-  }
+  };
+
 
   const handleNextQuestion = () => {
     if (selectedOption) {
       const updatedResponses = {
         ...responses,
         answers: [...responses.answers, selectedOption],
-      }
+      };
+
+      setResponses(updatedResponses);
+      localStorage.setItem("responses", JSON.stringify(updatedResponses));
+
+      console.log(updatedResponses);
+
 
       if (currentQuestionIndex < surveyData.length - 1) {
-        setResponses(updatedResponses)
-        setSlideDirection("slide-out-up")
+        setSlideDirection("slide-out-up");
         setTimeout(() => {
-          setCurrentQuestionIndex(currentQuestionIndex + 1)
-          setSelectedOption(null)
-        }, 300)
-      
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          setSelectedOption(null);
+        }, 300);
       } else {
-        submitToSheet(updatedResponses)
+        submitToSheet(updatedResponses);
       }
     } else {
-      setError("Please select an option before proceeding.")
+      setError("Please select an option before proceeding.");
     }
-  }
+  };
+
 
   const submitToSheet = async (finalResponses) => {
     try {
@@ -765,6 +781,8 @@ const Survey=()=> {
        localStorage.setItem("surveySubmitted", "true");
 
        localStorage.removeItem("currentQuestionIndex");
+
+       localStorage.removeItem("responses");
       
        // Redirect to the conclusion page and replace history entry
        navigate("/conclusion", { replace: true });
