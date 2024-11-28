@@ -114,7 +114,7 @@ export const surveyData = [
     { id: 91, question: "I've been using alcohol or other drugs to make myself feel better." },
     { id: 92, question: "I've been using alcohol or other drugs to help me get through it." },
     { id: 93, question: "I've been giving up trying to deal with it." },
-    { id: 94, question: "I've been giving up the attempt to cope." },
+    { id: 94, question: "I've been giving up the attempt to cope." }, 
     { id: 95, question: "I've been criticizing myself." },
     { id: 96, question: "I've been blaming myself for things that happened." }
 ];
@@ -155,6 +155,12 @@ export const optionsData = [
         { label: "D", text: "Sometimes" },
         { label: "E", text: "Rarely" },
         { label: "F", text: "Never" },
+      ],
+      optionSet6: [
+        { label: "A", text: "I haven't been doing this at all" },
+        { label: "B", text: "I've been doing this a little bit" },
+        { label: "C", text: "I've been doing this a medium amount" },
+        { label: "D", text: "I've been doing this a lot" },
       ],
     }
 ];
@@ -375,6 +381,13 @@ export const optionsDataHindi = [
       { "label": "D", "text": "कभी-कभी" },
       { "label": "E", "text": "कभी-कभार" },
       { "label": "F", "text": "कभी नहीं" }
-    ]
+    ],
+
+   "optionSet6": [
+  { "label": "A", "text": "मैंने यह बिल्कुल भी नहीं किया है" },
+  { "label": "B", "text": "मैंने यह थोड़ा सा किया है" },
+  { "label": "C", "text": "मैंने यह मध्यम मात्रा में किया है" },
+  { "label": "D", "text": "मैंने यह बहुत किया है" },
+  ],
   }
 ];
