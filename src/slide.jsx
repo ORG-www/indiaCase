@@ -642,38 +642,7 @@ const Survey=()=> {
         </>
       )
   }
-
-  // const questionSlide1 = (id) => {
-  //   if (id > 0 && id <= 50)
-  //     return (
-  //       <>
-  //         <div className="wrap1">
-  //           <div className="options-container">
-  //             {optionsData[0].optionSet2.map((option, index) => (
-  //               <button
-  //                 key={`${option.label}-${index}`}
-  //                 className={`option-button ${
-  //                   selectedOption === option.text ? "selected" : ""
-  //                 }`}
-  //                 onClick={() => handleOptionClick(option.text)}
-  //               >
-  //                 <span className="option-label">{option.label}</span>
-  //                 <span className="option-text">{option.text}</span>
-  //               </button>
-  //             ))}
-  //           </div>
-  //           {error && (
-  //             <p className="error-message" role="alert">
-  //               {error}
-  //             </p>
-  //           )}
-  //         </div>
-  //         <button onClick={handleNextQuestion} className="submit-button">
-  //           OK
-  //         </button>
-  //       </>
-  //     )
-  // }
+  
 
   const questionSlide1 = (id) => {
     if (id > 0 && id <= 50)
@@ -707,38 +676,6 @@ const Survey=()=> {
       )
   }
 
-
-  // const questionSlide2 = (id) => {
-  //   if (id >= 51 && id <= 96)
-  //     return (
-  //       <>
-  //         <div className="wrap1">
-  //           <div className="options-container">
-  //             {optionsData[0].optionSet2.map((option, index) => (
-  //               <button
-  //                 key={`${option.label}-${index}`}
-  //                 className={`option-button ${
-  //                   selectedOption === option.text ? "selected" : ""
-  //                 }`}
-  //                 onClick={() => handleOptionClick(option.text)}
-  //               >
-  //                 <span className="option-label">{option.label}</span>
-  //                 <span className="option-text">{option.text}</span>
-  //               </button>
-  //             ))}
-  //           </div>
-  //           {error && (
-  //             <p className="error-message" role="alert">
-  //               {error}
-  //             </p>
-  //           )}
-  //         </div>
-  //         <button onClick={handleNextQuestion} className="submit-button">
-  //           OK
-  //         </button>
-  //       </>
-  //     )
-  // }
   
   const questionSlide2 = (id) => {
     if (id >= 51 && id <= 68)
