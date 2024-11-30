@@ -796,8 +796,16 @@ const Survey=()=> {
   const submitToSheet = async (finalResponses) => {
     try {
       console.log("Attempting to submit data to Google Sheets:", finalResponses)
+      // const response = await fetch(
+      //   "https://script.google.com/macros/s/AKfycby3uVUjg7-L3XYyzqez5LQhYsWz7i6bNJk4b7427z6nhEh3E3WU2J1I5AN0h_u9lbEC/exec",
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify(finalResponses),
+      //   }
+      // )
+
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycby3uVUjg7-L3XYyzqez5LQhYsWz7i6bNJk4b7427z6nhEh3E3WU2J1I5AN0h_u9lbEC/exec",
+        "https://script.google.com/macros/s/AKfycbyfHqqWh0Xle4g2ulWGFODF2dCQ06n0Z58kgBHmKDKBYmVZrBxTGmTPcU58uaLiKUDh/exec",
         {
           method: "POST",
           body: JSON.stringify(finalResponses),
